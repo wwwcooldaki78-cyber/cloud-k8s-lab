@@ -13,12 +13,26 @@ CP_DOMAIN="control-plane.lab.dakky.xyz"
 WN_DOMAIN="worker-01.lab.dakky.xyz"
 CP_IP="<PASTE-CONTROL-PLANES-IP>"
 
-DRY_RUN=0
 case "${1:-}" in
-    "") ;;
-    --dry-run) DRY_RUN=1 ;;
-    *) echo "Usage: $0 [--dry-run]" >&2; exit 2 ;;
+  "") ;;
+  --dry-run)
+    DRY_RUN=1
+    ;;
+  --cp)
+    hostnamectl set-hostname "$CP_DOMAIN"
+    add_entry "$(hostname -I | awk '{print $1}')" "$CP_DOMAIN"
+    ;;
+  --wn)
+    hostnamectl set-hostname "$WN_DOMAIN"
+    add_entry "$(hostname -I | awk '{print $1}')" "$WN_DOMAIN"
+    add_entry "$CP_IP" "$CP_DOMAIN"
+    ;;
+  *)
+    echo "Usage: $0 [--dry-run|--cp|--wn]" >&2
+    exit 2
+    ;;
 esac
+
 [[ $# -le 1 ]] || { echo "Usage: $0 [--dry-run]" >&2; exit 2; }
 
 run() {
