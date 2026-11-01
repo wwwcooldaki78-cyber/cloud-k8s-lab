@@ -23,7 +23,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: juice-shop
-          image:  bkimminich/juice-shop
+          image: traefik/whoami         # bkimminich/juice-shop
           ports:
             - containerPort: 3000
           resources:
