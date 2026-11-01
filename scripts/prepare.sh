@@ -11,20 +11,7 @@ TARGET_USER=admin
 
 CP_DOMAIN="control-plane.lab.dakky.xyz"
 WN_DOMAIN="worker-01.lab.dakky.xyz"
-EXTRA_IP="<PASTE-CONTROL-PLANES-IP>"
-EXTRA_DOMAIN="<PASTE-CONTROL-PLANES-DN>"
-
-case "$1" in
-  --cp)
-    hostnamectl set-hostname "$CP_DOMAIN"
-    add_entry "$(hostname -I | awk '{print $1}')" "$CP_DOMAIN"
-    ;;
-  --wn)
-    hostnamectl set-hostname "$WN_DOMAIN"
-    add_entry "$(hostname -I | awk '{print $1}')" "$WN_DOMAIN"
-    add_entry "$EXTRA_IP" "$EXTRA_DOMAIN"
-    ;;
-esac
+CP_IP="<PASTE-CONTROL-PLANES-IP>"
 
 DRY_RUN=0
 case "${1:-}" in
@@ -51,6 +38,18 @@ write_file() {
 add_entry() {
   grep -qw "$2" /etc/hosts || echo "$1 $2" | tee -a /etc/hosts
 }
+
+case "$1" in
+  --cp)
+    hostnamectl set-hostname "$CP_DOMAIN"
+    add_entry "$(hostname -I | awk '{print $1}')" "$CP_DOMAIN"
+    ;;
+  --wn)
+    hostnamectl set-hostname "$WN_DOMAIN"
+    add_entry "$(hostname -I | awk '{print $1}')" "$WN_DOMAIN"
+    add_entry "$CP_IP" "$CP_DOMAIN"
+    ;;
+esac
 
 # ==============================================================================
 # 01. Configuring the repo
