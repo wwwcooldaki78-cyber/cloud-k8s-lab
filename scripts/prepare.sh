@@ -13,6 +13,8 @@ CP_DOMAIN="control-plane.lab.dakky.xyz"
 WN_DOMAIN="worker-01.lab.dakky.xyz"
 CP_IP="<PASTE-CONTROL-PLANES-IP>"
 
+DRY_RUN=0
+
 [[ $# -le 1 ]] || { echo "Usage: $0 [--dry-run]" >&2; exit 2; }
 
 run() {

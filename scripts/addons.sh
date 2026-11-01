@@ -35,7 +35,7 @@ usage() { echo "Usage: $0 [--dry-run] [--cloud]" >&2; exit 2; }
 for arg in "$@"; do
     case "$arg" in
         --dry-run)       DRY_RUN=1 ;;
-        --cloud)  SKIP_METALLB=1 ;;
+        --local)  SKIP_METALLB=1 ;;
         -h|--help)       usage ;;
         *)               echo "Unknown argument: $arg" >&2; usage ;;
     esac
@@ -199,8 +199,6 @@ run helm upgrade --install metrics-server metrics-server/metrics-server \
 # 06. MetalLB (via Helm), then the pool + L2 advertisement from your own file
 # ==============================================================================
 if [[ "$SKIP_METALLB" -eq 1 ]]; then
-    : # does nothing
-else
     echo "==> 3. MetalLB"
 
     if [[ -r "$METALLB_CONFIG" ]]; then
@@ -228,6 +226,8 @@ else
         fi
         echo "  applied $METALLB_CONFIG"
     fi
+else
+    : # does nothing
 fi
 # ==============================================================================
 # 07. Envoy Gateway (via Helm) + the Coraza proxy settings
@@ -357,8 +357,6 @@ else
 fi
 
 if [[ "$SKIP_METALLB" -eq 1 ]]; then
-    : #Does nothing
-else
     kubectl -n metallb-system rollout status deploy/metallb-controller --timeout=120s >/dev/null \
         && echo "OK: metallb-controller is rolled out" || { echo "FAIL: metallb-controller not ready"; fail=1; }
     kubectl -n metallb-system rollout status ds/metallb-speaker --timeout=120s >/dev/null \
@@ -367,6 +365,8 @@ else
         n=$(kubectl -n metallb-system get "$kind.metallb.io" --no-headers 2>/dev/null | wc -l)
         [[ "$n" -ge 1 ]] && echo "OK: $n $kind found" || { echo "FAIL: no $kind in metallb-system"; fail=1; }
     done
+else
+    : #Does nothing
 fi
 
 kubectl -n envoy-gateway-system rollout status deploy/envoy-gateway --timeout=120s >/dev/null \
