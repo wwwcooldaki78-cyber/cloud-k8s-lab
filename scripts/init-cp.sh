@@ -140,9 +140,9 @@ EOF
     fi
     
     if [[ $DRY_RUN -eq 1 ]]; then
-        echo "  [dry-run] kubeadm init --config $KUBEADM_CONFIG 2>&1 | tee $WORKDIR/kubeadm-init.log"
+        echo "  [dry-run] kubeadm init --config $KUBEADM_CONFIG 2>&1 | tee $OUTPUT_DIR/kubeadm-init.log"
     else
-        kubeadm init --config "$KUBEADM_CONFIG" 2>&1 | tee "$WORKDIR/kubeadm-init.log"
+        kubeadm init --config "$KUBEADM_CONFIG" 2>&1 | tee "$OUTPUT_DIR/kubeadm-init.log"
     fi
 fi
 
