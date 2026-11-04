@@ -52,4 +52,4 @@ spec:
       name: juice-gateway
   tls:
     minVersion: "1.2"
-  enableProxyProtocol: true
+#  enableProxyProtocol: true

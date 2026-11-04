@@ -24,20 +24,24 @@ spec:
       containers:
         - name: juice-shop
           image: traefik/whoami         # bkimminich/juice-shop
+          args: ["-port=3000"]          # Comment this out when using juice-shp
           ports:
             - containerPort: 3000
           resources:
             requests: { cpu: 100m, memory: 256Mi }
             limits:   { cpu: 500m, memory: 512Mi }
           startupProbe:
-            httpGet: { path: /rest/admin/application-version, port: 3000 }
+            #httpGet: { path: /rest/admin/application-version, port: 3000 }
+            httpGet: { path: /, port: 3000 }
             failureThreshold: 30
             periodSeconds: 2
           readinessProbe:
-            httpGet: { path: /rest/admin/application-version, port: 3000 }
+            #httpGet: { path: /rest/admin/application-version, port: 3000 }
+            httpGet: { path: /, port: 3000 }
             periodSeconds: 5
           livenessProbe:
-            httpGet: { path: /rest/admin/application-version, port: 3000 }
+            #httpGet: { path: /rest/admin/application-version, port: 3000 }
+            httpGet: { path: /, port: 3000 }
             periodSeconds: 10
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
