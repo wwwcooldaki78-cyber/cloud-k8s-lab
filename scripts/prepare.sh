@@ -11,11 +11,39 @@ TARGET_USER=admin
 
 CP_DOMAIN="control-plane.lab.dakky.xyz"
 WN_DOMAIN="worker-01.lab.dakky.xyz"
-CP_IP="<PASTE-CONTROL-PLANES-IP>"
+CP_IP="192.168.3.69"
+WN_IP="192.168.3.96"
 
 DRY_RUN=0
+MODE=""
 
-[[ $# -le 1 ]] || { echo "Usage: $0 [--dry-run]" >&2; exit 2; }
+usage() {
+  echo "Usage: $0 (--cp | --wn) [--dry-run]" >&2
+  exit 2
+}
+
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    --cp|--wn)
+      [[ -z "$MODE" ]] || { echo "Error: only one of --cp or --wn allowed" >&2; usage; }
+      MODE="${arg#--}"
+      ;;
+    -h|--help) usage ;;
+    *) echo "Error: unknown argument: $arg" >&2; usage ;;
+  esac
+done
+
+[[ -n "$MODE" ]] || { echo "Error: one of --cp or --wn is required" >&2; usage; }
+
+echo "mode=$MODE dry_run=$DRY_RUN"
+
+# example use:
+if (( DRY_RUN )); then
+  echo "[dry-run] would run the $MODE steps"
+else
+  echo "running the $MODE steps"
+fi
 
 run() {
     if [[ $DRY_RUN -eq 1 ]]; then echo "  [dry-run] $*"; else "$@"; fi
@@ -43,6 +71,7 @@ case "${1:-}" in
   --cp)
     hostnamectl set-hostname "$CP_DOMAIN"
     add_entry "$(hostname -I | awk '{print $1}')" "$CP_DOMAIN"
+    add_entry "$WN_IP" "$WN_DOMAIN"
     ;;
   --wn)
     hostnamectl set-hostname "$WN_DOMAIN"

@@ -42,6 +42,8 @@ for arg in "$@"; do
 done
 
 if [[ "$SKIP_METALLB" -eq 1 ]]; then
+    :
+else
     readonly WAF_FILE="$WORKDIR/app/cloud-waf.yaml"
 fi
 
