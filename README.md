@@ -141,10 +141,16 @@ kubectl get envoyextensionpolicy -n juice-shop
 5. Create a new input. `Inputs → Create New Input → CloudTrail → SQS-Based S3`
 6. Give it a name `cloudtrail-sqs`. Unpick `Signature Validate All Events` box. Select the AWS Account, from the drop down menu. Select the region, this must match where our queue lives. **SQS queue name:** `cloudtrail-queue`. Finally, remove the default index and pick the index we created.
 
-<h2>
-  <img src="./images/attack.png" width="190" align="top" alt="">
-  Attack Simulation
-</h2>
+<table>
+  <tr>
+    <td valign="middle">
+      <img src="./images/attack.png" width="190" alt="">
+    </td>
+    <td valign="middle">
+      <h2>Attack Simulation</h2>
+    </td>
+  </tr>
+</table>
 
 > [!TIP]
 > - In this lab, we can attack kubernetes, aws, or the owasp-juice-shop.
