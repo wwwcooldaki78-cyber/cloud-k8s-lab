@@ -1,0 +1,5 @@
+.obsidian/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
