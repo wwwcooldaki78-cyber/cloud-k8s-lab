@@ -143,7 +143,7 @@ kubectl get envoyextensionpolicy -n juice-shop
 
 <h2 style="display: flex; align-items: center; gap: 10px;">
   <img src="./images/attack.png" width="190">
-  <span style="transform: translate( -30px, 30px);">
+  <span style="transform: translate( -30px, 0px);">
     Attack Simulation
   </span>
 </h2>
