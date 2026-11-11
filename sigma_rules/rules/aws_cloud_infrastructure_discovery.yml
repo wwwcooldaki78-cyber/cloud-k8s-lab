@@ -1,0 +1,32 @@
+title: Detects AWS Infrastructure Discovery
+id: 142c5a05-9cf0-4978-99b9-59f77d3c2672
+status: experimental
+author: Dakky
+date: 2026-11-11
+description: Detects AWS API calls used to enumerate cloud infrastructure, potentially indicating reconnaissance activity.
+
+logsource:
+    product: aws
+    service: cloudtrail
+
+detection:
+    selection:
+        eventSource: ec2.amazonaws.com
+        eventName:
+            - DescribeInstances
+            - DescribeVpcs
+            - DescribeSubnets
+            - DescribeSecurityGroups
+            - DescribeRouteTables
+    condition: selection
+
+level: low
+
+tags:
+    - attack.discovery
+    - attack.t1580
+
+falsepositives:
+    - Legitimate AWS Console usage.
+    - Terraform refresh and planning operations.
+    - Monitoring and inventory tools.

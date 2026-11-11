@@ -1,0 +1,27 @@
+title: Detects Creation of IAM Access Keys
+id: 685ebcdc-86c1-4112-ab99-90fe6958a9ae
+status: experimental
+author: Dakky
+date: 2026-11-11
+description: Detects creation of new IAM access keys, potentially allowing an attacker to establish persistent programmatic access.
+
+logsource:
+    product: aws
+    service: cloudtrail
+
+detection:
+    selection:
+        eventSource: iam.amazonaws.com
+        eventName: CreateAccessKey
+    condition: selection
+
+level: medium
+
+tags:
+    - attack.persistence
+    - attack.t1098.001
+
+falsepositives:
+    - Legitimate credential rotation.
+    - Application provisioning.
+    - Administrative creation of programmatic credentials.

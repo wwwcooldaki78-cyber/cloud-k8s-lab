@@ -1,0 +1,12 @@
+name: AWS CloudTrail Splunk Pipeline
+priority: 20
+transformations:
+    - id: add_aws_index
+      type: add_condition
+      conditions:
+          index: dl-aws-logs
+          sourcetype: aws:cloudtrail
+      rule_conditions:
+          - type: logsource
+            product: aws
+            service: cloudtrail

@@ -1,0 +1,26 @@
+title: AWS Root Account Used
+id: 7fb80550-c575-4085-977d-59773d21b50c
+status: Experimental
+description: Detects activity performed using the AWS root account credentials.
+author: Dakky
+date: 2026/11/10
+logsource:
+    product: aws
+    service: cloudtrail
+
+detection:
+    selection_usertype:
+        userIdentity.type: Root
+    selection_eventtype:
+        eventType: AwsServiceEvent
+    condition: selection_usertype and not selection_eventtype
+
+falsepositives:
+    - Legitimate root account operations
+
+level: high
+
+tags:
+    - attack.initial_access
+    - attack.t1078
+    - attack.t1078.004
