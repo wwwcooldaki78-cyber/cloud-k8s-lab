@@ -1,10 +1,9 @@
 ## Table of contents
-- [[#1. DOM XSS]]
-- [[#2. Bonus Payload]]
-- [[#3. Reflected XSS]]
-- [[#4. API-only XSS]]
-- [[#5. Client-side XSS Protection]]
-- 
+- [1. DOM XSS](#1-dom-xss)
+- [2. Bonus Payload](#2-bonus-payload)
+- [3. Reflected XSS](#3-reflected-xss)
+- [4. API-only XSS](#4-api-only-xss)
+- [5. Client-side XSS Protection](#5-client-side-xss-protection)
 
 ## 1. DOM XSS
 

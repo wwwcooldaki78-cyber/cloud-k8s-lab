@@ -1,13 +1,13 @@
 ## Table of contents
 
-- [[#1. SQL Injection in Login Panel]]
-- [[#2. Login as Bender]]
-- [[#3. Login as Jim]]
-- [[#4. Database Schema]]
-- [[#5. User Credentials]]
-- [[#6. Christmas Special]]
-- [[#7. Ephemeral Accountant]]
-- [[#8. SSTi]]
+- [1. SQL Injection in Login Panel](#1-sql-injection-in-login-panel)
+- [2. Login as Bender](#2-login-as-bender)
+- [3. Login as Jim](#3-login-as-jim)
+- [4. Database Schema](#4-database-schema)
+- [5. User Credentials](#5-user-credentials)
+- [6. Christmas Special](#6-christmas-special)
+- [7. Ephemeral Accountant](#7-ephemeral-accountant)
+- [8. SSTi](#8-ssti)
 
 ## 1. SQL Injection in Login Panel
 

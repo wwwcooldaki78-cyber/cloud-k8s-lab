@@ -1,8 +1,8 @@
 ## Table of contents
 
-[[#1. NoSQL DoS]]
-[[#2. NoSQL Manipulation]]
-[[#3. NoSQL Exfiltration]]
+1. [NoSQL DoS](#1-nosql-dos)
+2. [NoSQL Manipulation](#2-nosql-manipulation)
+3. [NoSQL Exfiltration](#3-nosql-exfiltration)
 
 ## 1. NoSQL DoS
 
