@@ -47,21 +47,21 @@ terraform destroy                # To delete all the resources
 1. Disable Swap
 2. Load Essential Kernel Modules
 3. Configure critical sysctl parameters
-4. Install container runtime, [Containerd](Containerd.md) is what is chose
+4. Install container runtime, [Containerd](./setup/Containerd.md) is what is chose
 5. Setting Up the Kubernetes Repositories
-6. Install kubelet [kubeadm](Installing%20kubeadm.md) kubectl
+6. Install kubelet [kubeadm](./setup/Installing%20kubeadm.md) kubectl
 7. Initialize the Cluster
-8. Install [Calico](Calico.md) CNI
+8. Install [Calico](./setup/Calico.md) CNI
 9. Join the Worker Node
-10. Install [Helm](Helm.md)
-11. Install [Metrics-server](Metrics-server.md)
-12. Install [MetalLB](MetalLB.md),if installing locally.
-13. Install [Envoy Gateway](Envoy%20Gateway.md) + apply the Corza proxy settings.
-14. Install [Cert-Manager](Cert-Manager.md)
-15. Setup [Splunk](Splunk.md) otel, if we want that. Its optional.
+10. Install [Helm](./setup/Helm.md)
+11. Install [Metrics-server](./setup/Metrics-server.md)
+12. Install [MetalLB](./setup/MetalLB.md),if installing locally.
+13. Install [Envoy Gateway](./setup/Envoy%20Gateway.md) + apply the Corza proxy settings.
+14. Install [Cert-Manager](./setup/Cert-Manager.md)
+15. Setup [Splunk](./setup/Splunk.md) otel, if we want that. Its optional.
 16. Verify Cluster Health
 17. Test Pod Scheduling
-18. Deploy the vulnerable web app ([Juice-shop](Juice-shop.md)). Its optional.
+18. Deploy the vulnerable web app ([Juice-shop](./setup/Juice-shop.md)). Its optional.
 
 ### Install
 
