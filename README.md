@@ -148,6 +148,12 @@ kubectl get envoyextensionpolicy -n juice-shop
   </span>
 </h2>
 
+<h2>
+  <img src="./images/attack.png" width="190" align="bottom" alt="">
+  Attack Simulation
+</h2>
+
+
 > [!TIP]
 > - In this lab, we can attack kubernetes, aws, or the owasp-juice-shop.
 > - For Cloud Detection Engineering, look [here](./sigma_rules/README.md).
